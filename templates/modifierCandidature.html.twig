@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+  {% block title %}modification candidature{% endblock %}
+    {% block body %}
+   
+   <form action="/modificationCandidature" method="post">
+   <input type="hidden"  name="id" value="{{ candidature.id }}" required>
+        Poste : <input type="text" name="poste" value="{{candidature.poste}}" required>
+        <br>
+        Nom du Candidat : <input type="text" name ="candidatNom" value="{{candidature.candidatNom}}" required>
+        <br>
+        Email : <input type="mail" name ="email"value="{{candidature.email}}" >
+        <br>
+        Statut : <input type="text" name="statut" value="{{candidature.statut}}" required>
+        <br>
+        <input type="submit" value="Valider">
+   </form>
+        {% endblock %}

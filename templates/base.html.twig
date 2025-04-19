@@ -1,17 +1,299 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Gestion RH{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    {% block stylesheets %}
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+      
+      <style>
+            h3 {
+              font-size: 2.4rem;
+              margin-bottom: 20px;
+              color:rgb(106, 93, 76);
+              font-weight: 700;
+              letter-spacing: 1.2px;
+              text-transform: uppercase;
+              text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            }
+            h6 {
+              font-size: 1.1rem;
+              color: #34495e;
+              margin-bottom: 25px;
+              font-weight: 700;
+              letter-spacing: 1.5px;
+              text-transform: uppercase;
+            }
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            
+            body {
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              background: linear-gradient(135deg,rgb(236, 244, 252),rgb(236, 244, 252));
+              color: #2c3e50;
+              margin: 0;
+              padding-top: 70px;
+            }
+
+            .home-container {
+              max-width: 900px;
+              margin: 0 auto;
+              background: #ffffffdd;
+              padding: 40px 50px;
+              border-radius: 15px;
+              box-shadow: 0 8px 20px rgba(44, 62, 80, 0.15);
+              text-align: center;
+            }
+
+            p {
+              font-size: 1.2rem;
+              line-height: 1.7;
+              margin-bottom: 30px;
+              color: #34495e;
+              max-width: 800px;
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+            p strong em {
+              color: #e67e22; 
+              font-weight: 700;
+            }
+
+            cite {
+              display: block;
+              font-style: italic;
+              color: #7f8c8d;
+              font-size: 1rem;
+              margin-bottom: 50px;
+              letter-spacing: 0.05em;
+            }
+
+            .links-group {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 25px 40px;
+            }
+
+            .link-pair {
+              display: flex;
+              gap: 20px;
+              flex-wrap: nowrap;
+              justify-content: center;
+              min-width: 320px;
+            }
+
+            a.btn {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              padding: 12px 22px;
+              border-radius: 8px;
+              font-weight: 600;
+              font-size: 1rem;
+              text-decoration: none;
+              color: white;
+              box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+              cursor: pointer;
+              transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+              user-select: none;
+              min-width: 150px;
+              letter-spacing: 0.05em;
+            }
+
+            a.btn-add {
+              background-color:rgba(157, 227, 255, 0.82);    
+              border: 2px rgba(157, 227, 255, 0.82); 
+              color: #23272b !important;
+            }
+
+            a.btn-add:hover, a.btn-add:focus {
+              background-color:rgba(75, 237, 235, 0.82); 
+              border-color:rgba(75, 237, 235, 0.82); 
+              box-shadow: 0 6px 15px rgba(97, 199, 250, 0.82); 
+              transform: translateY(-3px);
+              outline: none;
+            }
+
+            a.btn-view {
+              background-color:rgb(255, 221, 135);
+              border: 2px rgb(255, 221, 135);
+              color: #23272b !important;
+            }
+
+            a.btn-view:hover, a.btn-view:focus {
+              background-color: #fcc404;
+              border-color: #fcc404;
+              box-shadow: 0 6px 15px #fcc404;
+              transform: translateY(-3px);
+              outline: none;
+            }
+
+
+            @media (max-width: 700px) {
+              .link-pair {
+                flex-direction: column;
+                min-width: auto;
+              }
+              a.btn {
+                min-width: 100%;
+              }
+            }
+
+            .section-central {
+              margin-top: 2rem;
+              margin-bottom: 3.5rem;
+            }
+
+            .section-central h2 {
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              font-weight: 700;
+              font-size: 2rem;
+              color:rgb(255, 221, 135);
+              text-align: center;
+              margin-bottom: 2.5rem;
+              letter-spacing: 0.5px;
+            }
+
+            .card-chic {
+              background: #ffffff;
+              border: 1px solid #ffffff;
+              border-radius: 15px;
+              padding: 2rem 1.2rem 1.5rem 1.2rem;
+              text-align: center;
+              transition: box-shadow 0.2s;
+              height: 100%;
+            }
+
+            .card-chic:hover {
+            box-shadow: 0 4px 15px #f2c4c9;
+            transform: translateY(-4px);
+            }
+            
+            .card-chic i {
+              font-size: 2.4rem;
+              margin-bottom: 1rem;
+              color: #3fc0c7;
+              opacity: 0.85;
+            }
+
+            .card-chic h5 {
+              color: #fcc404;
+              font-weight: 600;
+              font-size: 1.18rem;
+              margin-bottom: 0.8rem;
+            }
+
+            .card-chic p {
+              color: #23272b;
+              font-size: 1rem;
+              margin-bottom: 0;
+            }
+
+            @media (max-width: 991px) {
+              .section-central .row > div {
+                margin-bottom: 1.5rem;
+              }
+            }
+
+            .navbar {
+                background:rgb(51, 55, 59);
+                border-bottom: 2px rgb(70, 198, 241);
+                box-shadow: 0 -2px 16px rgba(230,126,34,0.08);
+            }
+            
+            .navbar-brand{
+                color: #f2c4c9;
+            }
+
+            .navbar-brand.active, .navbar-brand:focus, .navbar-brand:hover {
+                
+                color: #fff6ec;
+            }
+             
+             .nav-link {
+                color: #fff6ec;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+            
+            .nav-link.active, .nav-link:focus, .nav-link:hover {
+                color: #23272b ;
+                background: #f2c4c9;
+                border-radius: 5px;
+            }
+            .container {
+                margin-bottom: 80px;
+                padding-top: 20px; 
+            }
+            footer {
+                background: #23272b;
+                color: #fff6ec;
+                font-weight: 500;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                padding: 18px 0 8px 0;
+                text-align: center;
+                box-shadow: 0 -2px 16px rgba(230,126,34,0.08);
+                position: fixed;
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                z-index: 1000;
+                font-family: 'Segoe UI', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+      </style>
+    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block javascripts %}
+        {% block importmap %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
         {% endblock %}
-    </head>
-    <body>
+    {% endblock %}
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg fixed-top ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="home">
+                <i class="bi bi-briefcase-fill me-2" ></i>Gestion RH
+            </a>
+  
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home"><i class="bi bi-house-door-fill me-1"></i>Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fonctionnalites"><i class="bi bi-grid-1x2-fill me-1"></i>Fonctionnalités</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#AproposDeNous"><i class="bi bi-building"></i>À propos de nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login"><i class="bi bi-box-arrow-in-right me-1"></i>Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </nav>
+    <main class="container">
         {% block body %}{% endblock %}
-    </body>
+    </main>
+    <footer>
+        &copy; 2025 - Gestion Ressources Humaines
+    </footer>
+</body>
 </html>

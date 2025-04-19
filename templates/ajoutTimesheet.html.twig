@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+  {% block title %}ajout timesheet{% endblock %}
+    {% block body %}
+   
+   <form action="ajouterTimesheet" method="post">
+        Date : <input type="date" name="date" required>
+        <br>
+        Heures travail : <input type="number" name ="heuresTravail" required>
+        <br>
+        Heures Sup : <input type="number" name ="heuresSup">
+        <br>
+        <label for="employe">Employé :</label>
+        <select name="employe" id="employe" required>
+            {% for employe in employes %}  {# Assurez-vous d'avoir une variable 'employes' passée au template #}
+                <option value="{{ employe.id }}">{{ employe.nom }} {{ employe.prenom }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Valider">
+   </form>
+        {% endblock %}

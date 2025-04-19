@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block title %}Timesheet{% endblock %}
+{% block body %}<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Employe ID</th>
+      <th scope="col">Date</th>
+      <th scope="col">Heures travail</th>
+      <th scope="col">Heueres Sup</th>
+      <th scope="col">Action</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for timesheet in timesheet %}
+        <tr>
+            <td>{{ timesheet.id }}</td>
+            <td>{{ timesheet.employe.id }}</td>
+            <td>{{ timesheet.date }}</td>
+            <td>{{ timesheet.HeuresTravail }}</td>
+            <td>{{ timesheet.HeuresSup }}</td>
+            <td><a href="modifierTimesheet/{{timesheet.ID}}">Modifier</a></td>
+            <td><a href="supprimerTimesheet/{{timesheet.ID}}">Supprimer</a></td>
+        </tr>
+    {% endfor %}  
+  </tbody>
+</table>{% endblock %}

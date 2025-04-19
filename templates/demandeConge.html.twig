@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block title %}Demande Congé{% endblock %}
+{% block body %}<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Employe ID</th>
+      <th scope="col">Type Congé</th>
+      <th scope="col">Date début</th>
+      <th scope="col">Date fin</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Action</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for demande in demandeConge %}
+        <tr>
+            <td>{{ demande.id }}</td>
+            <td>{{ demande.employe.id }}</td>
+            <td>{{ demande.TypeConge }}</td>
+            <td>{{ demande.DateDebut }}</td>
+            <td>{{ demande.DateFin }}</td>
+            <td>{{ demande.statut }}</td>
+            <td><a href="modifierDemandeConge/{{demande.ID}}">Modifier</a></td>
+            <td><a href="supprimerDemandeConge/{{demande.ID}}">Supprimer</a></td>
+        </tr>
+    {% endfor %}  
+  </tbody>
+</table>{% endblock %}

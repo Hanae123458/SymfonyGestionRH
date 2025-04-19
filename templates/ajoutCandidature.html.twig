@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+  {% block title %}ajout candidature{% endblock %}
+    {% block body %}
+   
+   <form action="ajouterCandidature" method="post">
+        Poste : <input type="text" name="poste" required>
+        <br>
+        Nom du candidat : <input type="text" name ="candidatNom" required>
+        <br>
+        Email : <input type="mail" name ="email">
+        <br>
+        Statut : <input type="text" name="statut" required>
+        <br>
+        <input type="submit" value="Valider">
+   </form>
+        {% endblock %}

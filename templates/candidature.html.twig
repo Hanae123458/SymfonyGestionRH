@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block title %}Candidature{% endblock %}
+{% block body %}<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Poste</th>
+      <th scope="col">Candidat Nom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Statut</th>
+      <th scope="col">Action</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for candidature in candidature %}
+        <tr>
+            <td>{{ candidature.id }}</td>
+            <td>{{ candidature.poste }}</td>
+            <td>{{ candidature.candidatNom }}</td>
+            <td>{{ candidature.email}}</td>
+            <td>{{ candidature.statut }}</td>
+            <td><a href="modifierCandidature/{{candidature.ID}}">Modifier</a></td>
+            <td><a href="supprimerCandidature/{{candidature.ID}}">Supprimer</a></td>
+        </tr>
+    {% endfor %}  
+  </tbody>
+</table>{% endblock %}

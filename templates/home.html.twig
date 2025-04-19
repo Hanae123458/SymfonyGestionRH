@@ -1,0 +1,95 @@
+{% extends "base.html.twig" %}
+{% block title %}Page d'accueil - Gestion RH{% endblock %}
+{% block body %}
+<div class="py-5" style="height: 75vh; background: linear-gradient(rgba(117, 113, 113, 0.43), rgba(117, 113, 113, 0.43)), url('/images/rh2.png'); background-size: cover; background-position: center;">
+    <div class="container">
+      <header class="text-center mb-5">
+        <h1 class="display-4 fw-bold" style="color:hsl(0, 0.00%, 100.00%);">Bienvenue sur l'application de Gestion des Ressources Humaines</h1>
+        
+      </header>
+      <section >
+        <p class="fs-5 text-light text-center fw-bold">
+              Notre application vous permet de gérer facilement tous les aspects RH. Elle offre une gestion couvrant le suivi complet des employés, l'administration flexible des contrats, le traitement simplifié des demandes de congé, la gestion précise des feuilles de temps, ainsi qu’un pilotage efficace des candidatures.
+        </p>
+      </section>
+      <blockquote class="blockquote text-center fst-italic text-light fs-6 fw-bold">
+          "Transformez votre gestion RH avec notre solution innovante, performante et intuitive."
+        </blockquote>
+    </div>
+  </div>
+
+  <!-- Liens d'actions -->
+  <div id="fonctionnalites" class="section-central" style="scroll-margin-top: 101px; ">
+      <section>        
+        <h2 class="h5 text-center text-secondary mb-4 fw-semibold" style="color:rgb(2, 22, 61) !important;">Fonctionnalités principales</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+          {% set actions = [
+            {'add': {'url':'ajout', 'label':'Ajouter Employé', 'icon':'person-plus-fill'}, 'view': {'url':'employe', 'label':'Voir Employé', 'icon':'people-fill'}},
+            {'add': {'url':'ajoutContrat', 'label':'Ajouter Contrat', 'icon':'file-earmark-plus-fill'}, 'view': {'url':'contrat', 'label':'Voir Contrat', 'icon':'file-earmark-text-fill'}},
+            {'add': {'url':'ajoutCandidature', 'label':'Ajouter Candidature', 'icon':'envelope-plus-fill'}, 'view': {'url':'candidature', 'label':'Voir Candidature', 'icon':'envelope-fill'}},
+            {'add': {'url':'ajoutDemandeConge', 'label':'Ajouter Demande de Congé', 'icon':'calendar-plus-fill'}, 'view': {'url':'demandeConge', 'label':'Voir Demande de Congé', 'icon':'calendar-check-fill'}},
+            {'add': {'url':'ajoutTimesheet', 'label':'Ajouter Timesheet', 'icon':'clock-history'}, 'view': {'url':'timesheet', 'label':'Voir Timesheet', 'icon':'clock-fill'}}
+          ] %}
+
+          {% for action in actions %}
+            <div class="col d-flex justify-content-center">
+              <div class="card shadow-sm border-0 w-100" style="max-width: 360px;">
+                <div class="card-body d-flex justify-content-around">
+
+                  <a href="{{ action.add.url }}" class="btn btn-add d-flex align-items-center gap-2 flex-grow-1 me-2" title="{{ action.add.label }}">
+                    <i class="bi bi-{{ action.add.icon }}" style="font-size:1.25rem;"></i> {{ action.add.label }}
+                  </a>
+
+                  <a href="{{ action.view.url }}" class="btn btn-view d-flex align-items-center gap-2 flex-grow-1 ms-2" title="{{ action.view.label }}">
+                    <i class="bi bi-{{ action.view.icon }}" style="font-size:1.25rem;"></i> {{ action.view.label }}
+                  </a>
+
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </section>
+  </div>
+    
+
+  <!-- SECTION CENTRALE -->
+    <div id="AproposDeNous" class="section-central" style="scroll-margin-top: 75px; ">
+    <section>
+      <h2 class="h5 text-center text-secondary mb-4 fw-semibold" style="color:rgb(2, 22, 61) !important;">À propos de nous</h2>
+      <div class="row justify-content-center g-4">
+        <div class="col-12 col-md-4">
+          <div class="card-chic h-100">
+            <i class="bi bi-person-badge"></i>
+            <h5>Gérez vos employés en toute simplicité</h5>
+            <p>Ajoutez, modifiez ou supprimez les informations de vos employés en quelques clics.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card-chic h-100">
+            <i class="bi bi-file-earmark-text"></i>
+            <h5>Suivi complet des candidatures et contrats</h5>
+            <p>Centralisez la gestion des candidatures et éditez facilement les contrats associés.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card-chic h-100">
+            <i class="bi bi-calendar2-check"></i>
+            <h5>Gestion des congés et feuilles de temps</h5>
+            <p>Validez les demandes de congé et suivez les timesheets pour un meilleur pilotage RH.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card-chic h-100">
+            <i class="bi bi-shield-lock"></i>
+            <h5>Sécurité et accès réservés</h5>
+            <p>Un espace protégé où seul le responsable RH connecté peut effectuer les opérations sensibles.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+  {% block title %}modification timesheet{% endblock %}
+    {% block body %}
+   
+   <form action="/modificationTimesheet" method="post">
+   <input type="hidden"  name="id" value="{{ timesheet.id }}" required>
+        Date : <input type="date" name="date" value="{{timesheet.date}}" required>
+        <br>
+        Heures Travail : <input type="number" name ="heuresTravail" value="{{timesheet.HeuresTravail}}" required>
+        <br>
+        Heures Sup : <input type="number" name ="heuresSup" value="{{timesheet.HeuresSup}}" >
+        <br>
+        Employé : 
+            <select name="employe" required>
+                {% for e in employes %}
+                    <option value="{{ e.id }}" {% if e.id == timesheet.employe.id %}selected{% endif %}>{{ e.nom }} {{ e.prenom }}</option>
+                {% endfor %}
+            </select>
+        <input type="submit" value="Valider">
+   </form>
+        {% endblock %}

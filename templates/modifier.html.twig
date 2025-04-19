@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block title %}page de modification{% endblock %}
+
+{% block body %}
+    <h6>modifier un employé</h6>
+    <form action="/modifierEmploye" method="post">
+        <div>
+        <input type="hidden"  name="id" value="{{ employe.id }}" required>
+           Nom : <input type="text"  name="nom" value="{{ employe.nom }}" required>
+        </div>
+        <div>
+            Prénom : <input type="text"  name="prenom" value="{{ employe.prenom }}" >
+        </div>                                                            
+        <div>
+           Email : <input type="mail"  name="email" value="{{ employe.email }}" required>
+        </div>
+        <div>
+           Poste : <input type="text"  name="poste" value="{{ employe.poste }}" required>
+        </div>
+        <div>
+           Salaire : <input type="text" pattern="^\d+(\.\d{1,2})?$" name="salaire" value="{{ employe.salaire }}" required>
+        </div>
+        <div>
+           Date d'embauche : <input type="date"  name="date" value="{{ employe.dateEmbauche }}" required>
+        </div>
+        <div>
+            <button type="submit">Modifier</button>
+        </div>
+    </form>
+{% endblock %}

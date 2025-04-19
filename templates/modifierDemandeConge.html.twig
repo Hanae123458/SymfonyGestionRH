@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+  {% block title %}modification demande de congé{% endblock %}
+    {% block body %}
+   
+   <form action="/modificationDemandeConge" method="post">
+   <input type="hidden"  name="id" value="{{ demandeConge.id }}" required>
+        Type Congé : <input type="text" name="typeConge" value="{{demandeConge.TypeConge}}" required>
+        <br>
+        Date début : <input type="date" name ="dateDebut" value="{{demandeConge.DateDebut}}" required>
+        <br>
+        Date fin : <input type="date" name ="dateFin"value="{{demandeConge.DateFin}}" >
+        <br>
+        Statut : <input type="text" name="statut" value="{{demandeConge.statut}}" required>
+        <br>
+        Employé : 
+            <select name="employe" required>
+                {% for e in employes %}
+                    <option value="{{ e.id }}" {% if e.id == demandeConge.employe.id %}selected{% endif %}>{{ e.nom }} {{ e.prenom }}</option>
+                {% endfor %}
+            </select>
+        <input type="submit" value="Valider">
+   </form>
+        {% endblock %}

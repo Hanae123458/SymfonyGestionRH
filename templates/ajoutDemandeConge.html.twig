@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+  {% block title %}ajout demande congés{% endblock %}
+    {% block body %}
+   
+   <form action="ajouterDemandeConge" method="post">
+        Type Congé : <input type="text" name="typeConge" required>
+        <br>
+        Date début : <input type="date" name ="dateDebut" required>
+        <br>
+        Date fin : <input type="date" name ="dateFin">
+        <br>
+        Statut: <input type="text" name="statut" required>
+        <br>
+        <label for="employe">Employé :</label>
+        <select name="employe" id="employe" required>
+            {% for employe in employes %}  {# Assurez-vous d'avoir une variable 'employes' passée au template #}
+                <option value="{{ employe.id }}">{{ employe.nom }} {{ employe.prenom }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Valider">
+   </form>
+        {% endblock %}

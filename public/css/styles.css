@@ -1,0 +1,30 @@
+p, h3, h5, cite {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+h3 {
+    color: seagreen;
+    font-weight: bolder;
+}
+
+p{
+    font-size: 20px;
+}
+
+.mirar{
+    text-decoration: none;
+    color: rgba(58, 58, 58, 0.541);
+    position: absolute;
+    left: 650px;
+    /* display: inline-block; */
+    /* margin-left: 50px; */
+}
+.link{
+    text-decoration: none;
+    position: absolute;
+    left: 430px;
+    color: rgba(58, 58, 58, 0.541);
+}
+/* .link:hover{
+    text-decoration: underline;
+    color: blueviolet;
+} */

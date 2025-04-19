@@ -1,0 +1,19 @@
+{% extends "base.html.twig" %}
+  {% block title %}ajout employé{% endblock %}
+    {% block body %}
+   
+   <form action="ajoutEmploye" method="post">
+        Nom : <input type="text" name="nom" required>
+        <br>
+        Prénom : <input type="text" name="prenom" required>
+        <br>
+        Email : <input type="mail" name="email" required>
+        <br>
+        Poste : <input type="text" name="poste" required>
+        <br>
+        Salaire : <input type="text" name="salaire" pattern="^\d+(\.\d{1,2})?$" required>
+        <br>
+        Date d'embauche : <input type="date" name ="date" required>
+        <input type="submit" value="Valider">
+   </form>
+        {% endblock %}

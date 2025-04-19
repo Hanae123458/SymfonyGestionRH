@@ -3,3 +3,147 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+home:
+    path: /home
+    controller: App\Controller\Controller::home
+
+employe:
+    path: /employe
+    controller: App\Controller\Controller::employe
+
+ajout:
+    path: /ajout
+    controller: App\Controller\Controller::ajout
+
+ajoutEmploye:
+    path: /ajoutEmploye
+    controller: App\Controller\Controller::ajoutEmploye
+
+modifier:
+    path: /modifier/{id}
+    controller: App\Controller\Controller::modifier
+
+modifierEmploye:
+    path: /modifierEmploye
+    controller: App\Controller\Controller::modifierEmploye
+
+supprimer:
+    path: /supprimer/{id}
+    controller: App\Controller\Controller::supprimer
+
+erreurEmploye:
+    path: /erreurEmploye
+    controller: App\Controller\Controller::erreurEmploye
+
+erreurContrat:
+    path: /erreurContrat
+    controller: App\Controller\Controller::erreurContrat
+
+contrat:
+    path: /contrat
+    controller: App\Controller\Controller::contrat
+
+ajoutContrat:
+    path: /ajoutContrat
+    controller: App\Controller\Controller::ajoutContrat
+
+ajouterContrat:
+    path: /ajouterContrat
+    controller: App\Controller\Controller::ajouterContrat
+
+supprimerContrat:
+    path: /supprimerContrat/{id}
+    controller: App\Controller\Controller::supprimerContrat
+
+modifierContrat:
+    path: /modifierContrat/{id}
+    controller: App\Controller\Controller::modifierContrat
+
+modificationContrat:
+    path: /modificationContrat
+    controller: App\Controller\Controller::modificationContrat
+
+erreurCandidature:
+    path: /erreurCandidature
+    controller: App\Controller\Controller::erreurCandidature
+
+candidature:
+    path: /candidature
+    controller: App\Controller\Controller::candidature
+
+ajoutCandidature:
+    path: /ajoutCandidature
+    controller: App\Controller\Controller::ajoutCandidature
+
+ajouterCandidature:
+    path: /ajouterCandidature
+    controller: App\Controller\Controller::ajouterCandidature
+
+supprimerCandidature:
+    path: /supprimerCandidature/{id}
+    controller: App\Controller\Controller::supprimerCandidature
+
+modifierCandidature:
+    path: /modifierCandidature/{id}
+    controller: App\Controller\Controller::modifierCandidature
+
+modificationCandidature:
+    path: /modificationCandidature
+    controller: App\Controller\Controller::modificationCandidature
+
+erreurTimesheet:
+    path: /erreurTimesheet
+    controller: App\Controller\Controller::erreurTimesheet
+
+timesheet:
+    path: /timesheet
+    controller: App\Controller\Controller::timesheet
+
+ajoutTimesheet:
+    path: /ajoutTimesheet
+    controller: App\Controller\Controller::ajoutTimesheet
+
+ajouterTimesheet:
+    path: /ajouterTimesheet
+    controller: App\Controller\Controller::ajouterTimesheet
+
+supprimerTimesheet:
+    path: /supprimerTimesheet/{id}
+    controller: App\Controller\Controller::supprimerTimesheet
+
+modifierTimesheet:
+    path: /modifierTimesheet/{id}
+    controller: App\Controller\Controller::modifierTimesheet
+
+modificationTimesheet:
+    path: /modificationTimesheet
+    controller: App\Controller\Controller::modificationTimesheet
+
+erreurDemandeConge:
+    path: /erreurDemandeConge
+    controller: App\Controller\Controller::erreurDemandeConge
+
+demandeConge:
+    path: /demandeConge
+    controller: App\Controller\Controller::demandeConge
+
+ajoutDemandeConge:
+    path: /ajoutDemandeConge
+    controller: App\Controller\Controller::ajoutDemandeConge
+
+ajouterDemandeConge:
+    path: /ajouterDemandeConge
+    controller: App\Controller\Controller::ajouterDemandeConge
+
+supprimerDemandeConge:
+    path: /supprimerDemandeConge/{id}
+    controller: App\Controller\Controller::supprimerDemandeConge
+
+modifierDemandeConge:
+    path: /modifierDemandeConge/{id}
+    controller: App\Controller\Controller::modifierDemandeConge
+
+modificationDemandeConge:
+    path: /modificationDemandeConge
+    controller: App\Controller\Controller::modificationDemandeConge

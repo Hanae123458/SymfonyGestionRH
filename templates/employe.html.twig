@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+{% block title %}Employé{% endblock %}
+{% block body %}<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Poste</th>
+      <th scope="col">Salaire</th>
+      <th scope="col">Date Embauche</th>
+      <th scope="col">Contrat ID</th>
+      <th scope="col">Action</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for employe in employe %}
+        <tr>
+            <td>{{ employe.id }}</td>
+            <td>{{ employe.nom }}</td>
+            <td>{{ employe.prenom }}</td>
+            <td>{{ employe.email }}</td>
+            <td>{{ employe.poste }}</td>
+            <td>{{ employe.salaire }}</td>
+            <td>{{ employe.DateEmbauche }}</td>
+                <td>
+                    {% for contrat in employe.contrat %}
+                        {{ contrat.id }} 
+                        {% if not loop.last %}, {% endif %}
+                        {% else %}
+                            Aucun contrat
+                        {% endfor %}
+                </td>
+            <td><a href="modifier/{{employe.ID}}">Modifier</a></td>
+            <td><a href="supprimer/{{employe.ID}}">Supprimer</a></td>
+        </tr>
+    {% endfor %}  
+  </tbody>
+</table>{% endblock %}
