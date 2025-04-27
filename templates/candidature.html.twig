@@ -1,15 +1,16 @@
 {% extends "base.html.twig" %}
 {% block title %}Candidature{% endblock %}
-{% block body %}<table class="table table-striped table-hover">
-  <thead>
+{% block body %}
+<table class="table table-striped table-hover table-bordered align-middle shadow-sm">
+  <thead style="background-color: white;">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Poste</th>
       <th scope="col">Candidat Nom</th>
       <th scope="col">Email</th>
       <th scope="col">Statut</th>
-      <th scope="col">Action</th>
-      <th scope="col">Action</th>
+      <th scope="col">Modification</th>
+      <th scope="col">Suppression</th>
     </tr>
   </thead>
   <tbody>
@@ -20,8 +21,8 @@
             <td>{{ candidature.candidatNom }}</td>
             <td>{{ candidature.email}}</td>
             <td>{{ candidature.statut }}</td>
-            <td><a href="modifierCandidature/{{candidature.ID}}">Modifier</a></td>
-            <td><a href="supprimerCandidature/{{candidature.ID}}">Supprimer</a></td>
+            <td><a href="modifierCandidature/{{candidature.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color: #28a745;">Modifier</a></td>
+            <td><a href="supprimerCandidature/{{candidature.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color:rgb(228, 10, 32);" onclick="return confirm('Voulez-vous vraiment supprimer cette candidature?')">Supprimer</a></td>
         </tr>
     {% endfor %}  
   </tbody>

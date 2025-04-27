@@ -42,6 +42,13 @@ class Employe
     #[ORM\OneToMany(mappedBy: 'employe', targetEntity: Timesheet::class, orphanRemoval: true)]
     private Collection $feuilleTemps;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $avantagesSociaux = null;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private ?string $clausesSpecifiques = null;
+
+
     public function __construct()
     {
         $this->contrats = new ArrayCollection();
@@ -211,4 +218,28 @@ class Employe
 
         return $this;
     }
+
+
+    public function getAvantagesSociaux(): ?string
+    {
+        return $this->avantagesSociaux;
+    }
+
+    public function setAvantagesSociaux(?string $avantagesSociaux): static
+    {
+        $this->avantagesSociaux = $avantagesSociaux;
+        return $this;
+    }
+
+    public function getClausesSpecifiques(): ?string
+    {
+        return $this->clausesSpecifiques;
+    }
+
+    public function setClausesSpecifiques(?string $clausesSpecifiques): static
+    {
+        $this->clausesSpecifiques = $clausesSpecifiques;
+        return $this;
+    }
+
 }

@@ -4,9 +4,20 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+app_logout:
+    path: /logout
+
+register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
 home:
     path: /home
     controller: App\Controller\Controller::home
+
+historiqueModification:
+    path: /historiqueModification
+    controller: App\Controller\Controller::historiqueModification
 
 employe:
     path: /employe

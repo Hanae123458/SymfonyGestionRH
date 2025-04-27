@@ -1,3 +1,65 @@
 body {
     background-color: skyblue;
 }
+/*AJOUT EMPLOYE*/
+p, h3, h5, cite {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+h3 {
+    color: seagreen;
+    font-weight: bolder;
+}
+
+p{
+    font-size: 20px;
+}
+
+.mirar{
+    text-decoration: none;
+    color: rgba(58, 58, 58, 0.541);
+    position: absolute;
+    left: 650px;
+    /* display: inline-block; */
+    /* margin-left: 50px; */
+}
+.link{
+    text-decoration: none;
+    position: absolute;
+    left: 430px;
+    color: rgba(58, 58, 58, 0.541);
+}
+/* .link:hover{
+    text-decoration: underline;
+    color: blueviolet;
+} */
+
+
+/*STYLE DE AJOUTEMLPYE*/
+.form-ajout {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}

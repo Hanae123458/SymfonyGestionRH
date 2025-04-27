@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Historique des modifications{% endblock %}
+
+{% block body %}
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NomTable</th>
+      <th scope="col">NomChamp</th>
+      <th scope="col">AncienneValeur</th>
+      <th scope="col">NouvelleValeur</th>
+      <th scope="col">DateModification</th>
+      <th scope="col">Utilisateur</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for modification in historiqueModification %}
+        <tr>
+            <td>{{ modification.id }}</td>
+            <td>{{ modification.nomTable }}</td>
+            <td>{{ modification.nomChamp }}</td>
+            <td>{{ modification.ancienneValeur }}</td>
+            <td>{{ modification.nouvelleValeur }}</td>
+            <td>{{ modification.dateModification|date('Y-m-d H:i:s') }}</td>
+            <td>{{ modification.utilisateur }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

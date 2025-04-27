@@ -1,19 +1,24 @@
 {% extends "base.html.twig" %}
 {% block title %}Page d'accueil - Gestion RH{% endblock %}
 {% block body %}
-<div class="py-5" style="height: 75vh; background: linear-gradient(rgba(117, 113, 113, 0.43), rgba(117, 113, 113, 0.43)), url('/images/rh2.png'); background-size: cover; background-position: center;">
+<div class="py-5" style="height: 75vh; background: linear-gradient(rgba(110, 214, 224, 0.37),rgba(110, 214, 224, 0.32)">
     <div class="container">
       <header class="text-center mb-5">
-        <h1 class="display-4 fw-bold" style="color:hsl(0, 0.00%, 100.00%);">Bienvenue sur l'application de Gestion des Ressources Humaines</h1>
-        
+          <div class="welcome-box" style="background-color: rgba(3, 18, 114, 0.34); padding: 20px; border-radius: 15px; display: inline-block;">
+            <h1 class="display-4 fw-bold" style="color: white; margin: 0;">
+              Bienvenue sur l'application de Gestion des Ressources Humaines
+            </h1>
+          </div>
       </header>
-      <section >
-        <p class="fs-5 text-light text-center fw-bold">
-              Notre application vous permet de gérer facilement tous les aspects RH. Elle offre une gestion couvrant le suivi complet des employés, l'administration flexible des contrats, le traitement simplifié des demandes de congé, la gestion précise des feuilles de temps, ainsi qu’un pilotage efficace des candidatures.
-        </p>
-      </section>
-      <blockquote class="blockquote text-center fst-italic text-light fs-6 fw-bold">
-          "Transformez votre gestion RH avec notre solution innovante, performante et intuitive."
+
+        <section >
+          <p class="fs-5 text-light text-center fw-bold" style="color:rgb(2, 22, 61) !important;" >
+                Notre application vous permet de gérer facilement tous les aspects RH. Elle offre une gestion couvrant le suivi complet des employés, l'administration flexible des contrats, le traitement simplifié des demandes de congé, la gestion précise des feuilles de temps, ainsi qu’un pilotage efficace des candidatures.
+          </p>
+        </section>
+
+        <blockquote class="blockquote text-center fst-italic text-light fs-6 fw-bold" style="color:rgb(2, 22, 61) !important;">
+            "Transformez votre gestion RH avec notre solution innovante, performante et intuitive."
         </blockquote>
     </div>
   </div>
@@ -24,11 +29,11 @@
         <h2 class="h5 text-center text-secondary mb-4 fw-semibold" style="color:rgb(2, 22, 61) !important;">Fonctionnalités principales</h2>
         <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
           {% set actions = [
-            {'add': {'url':'ajout', 'label':'Ajouter Employé', 'icon':'person-plus-fill'}, 'view': {'url':'employe', 'label':'Voir Employé', 'icon':'people-fill'}},
-            {'add': {'url':'ajoutContrat', 'label':'Ajouter Contrat', 'icon':'file-earmark-plus-fill'}, 'view': {'url':'contrat', 'label':'Voir Contrat', 'icon':'file-earmark-text-fill'}},
-            {'add': {'url':'ajoutCandidature', 'label':'Ajouter Candidature', 'icon':'envelope-plus-fill'}, 'view': {'url':'candidature', 'label':'Voir Candidature', 'icon':'envelope-fill'}},
-            {'add': {'url':'ajoutDemandeConge', 'label':'Ajouter Demande de Congé', 'icon':'calendar-plus-fill'}, 'view': {'url':'demandeConge', 'label':'Voir Demande de Congé', 'icon':'calendar-check-fill'}},
-            {'add': {'url':'ajoutTimesheet', 'label':'Ajouter Timesheet', 'icon':'clock-history'}, 'view': {'url':'timesheet', 'label':'Voir Timesheet', 'icon':'clock-fill'}}
+            {'add': {'url':'ajout', 'label':'Ajouter Employé', 'icon':'person-plus-fill'}, 'view': {'url':'employe', 'label':'Liste Employés', 'icon':'people-fill'}},
+            {'add': {'url':'ajoutContrat', 'label':'Ajouter Contrat', 'icon':'file-earmark-plus-fill'}, 'view': {'url':'contrat', 'label':'Liste Contrats', 'icon':'file-earmark-text-fill'}},
+            {'add': {'url':'ajoutCandidature', 'label':'Ajouter Candidature', 'icon':'envelope-plus-fill'}, 'view': {'url':'candidature', 'label':'Liste Candidatures', 'icon':'envelope-fill'}},
+            {'add': {'url':'ajoutDemandeConge', 'label':'Ajouter Demande de Congé', 'icon':'calendar-plus-fill'}, 'view': {'url':'demandeConge', 'label':'Liste Demandes de Congé', 'icon':'calendar-check-fill'}},
+            {'add': {'url':'ajoutTimesheet', 'label':'Ajouter Timesheet', 'icon':'clock-history'}, 'view': {'url':'timesheet', 'label':'Liste Timesheet', 'icon':'clock-fill'}}
           ] %}
 
           {% for action in actions %}

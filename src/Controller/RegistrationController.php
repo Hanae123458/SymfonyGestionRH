@@ -11,15 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
         if ($request->isMethod('POST')) {
             $user = new User();
+            $user->setUsername($request->request->get('username'));
             $user->setEmail($request->request->get('email'));
 
             $hashedPassword = $passwordHasher->hashPassword($user, $request->request->get('password'));
             $user->setPassword($hashedPassword);
+
+            $user->setRoles(['ROLE_USER']); 
 
             $entityManager->persist($user);
             $entityManager->flush();
