@@ -4,6 +4,11 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+dashboard:
+  path: /index
+  controller: App\Controller\DashboardController::index
+
+
 app_logout:
     path: /logout
 

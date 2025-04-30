@@ -1,0 +1,325 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center mt-4 mb-5">Tableau de bord</h1>
+
+    <div class="row g-4">
+        {# Graphique Candidatures #}
+        <div class="col-md-6">
+            <div class="card-chic h-100">
+                <div class="card-body">
+                    <h4 class="text-center mb-4">Candidatures</h4>
+                    <div class="chart-container">
+                        <canvas id="candidaturesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Graphique Demandes de congé #}
+        <div class="col-md-6">
+            <div class="card-chic h-100">
+                <div class="card-body">
+                    <h4 class="text-center mb-4">Demandes de congé</h4>
+                    <div class="chart-container">
+                        <canvas id="demandesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Graphique Candidatures par poste #}
+        <div class="col-md-6">
+            <div class="card-chic h-100">
+                <div class="card-body">
+                    <h4 class="text-center mb-4">Candidatures par poste</h4>
+                    <div class="chart-container">
+                        <canvas id="candidaturesParPosteChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Graphique Types de congé #}
+        <div class="col-md-6">
+            <div class="card-chic h-100">
+                <div class="card-body">
+                    <h4 class="text-center mb-4">Types de demandes de congé</h4>
+                    <div class="chart-container">
+                        <canvas id="typesCongeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Graphique Distribution des salaires #}
+        <div class="col-md-6">
+            <div class="card-chic h-100">
+                <div class="card-body">
+                    <h4 class="text-center mb-4">Distribution des salaires</h4>
+                    <div class="chart-container">
+                        <canvas id="salairesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# Graphique Heures par employé #}
+        <div class="col-md-6">
+            <div class="card-chic h-100">
+                <div class="card-body">
+                    <h4 class="text-center mb-4">Heures par employé</h4>
+                    <div class="chart-container">
+                        <canvas id="heuresEmployeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Debug 1: Vérification du chargement de Chart.js
+    console.log('Chart.js loaded:', typeof Chart !== 'undefined');
+    
+     // Debug 2: Affichage des données brutes AVANT la création de chartData
+    console.log("Données typesConge brutes:", {{ typesConge|default([])|json_encode|raw }});
+    console.log("Données salaires brutes:", {{ distributionSalaires|default([])|json_encode|raw }});
+
+     // Debug 3: Structure des données salaires
+    console.log("Structure des données salaires:", {
+        labels: {{ distributionSalaires|default([])|map(item => "#{item.salaire} DH")|json_encode|raw }},
+        values: {{ distributionSalaires|default([])|map(item => item.nombre)|json_encode|raw }}
+    });
+
+    // Données sécurisées
+    const chartData = {
+        candidatures: {
+            enCours: {{ candidaturesEnCours|default(0) }},
+            acceptees: {{ candidaturesAcceptees|default(0) }}
+        },
+        demandes: {
+            enCours: {{ demandesEnCours|default(0) }},
+            acceptees: {{ demandesAcceptees|default(0) }}
+        },
+        candidaturesParPoste: {{ candidaturesParPoste|default([])|json_encode|raw }},
+        typesConge: {{ typesConge|default([])|json_encode|raw }},
+        salaires: {{ distributionSalaires|default([])|json_encode|raw }},
+        heures: {{ heuresData|default([])|json_encode|raw }}
+    };
+
+    // Debug 4: Affichez les données brutes
+    console.log('Données reçues:', chartData);
+
+    // Fonction de création des graphiques circulaires
+    const createPieChart = (id, labels, data, colors) => {
+        const ctx = document.getElementById(id);
+        if (!ctx) {
+            console.error('Canvas non trouvé:', id);
+            return;
+        }
+        
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    };
+
+    // 1.  Graphique Candidatures
+    createPieChart(
+        'candidaturesChart',
+        ['En cours', 'Acceptées'],
+        [chartData.candidatures.enCours, chartData.candidatures.acceptees],
+        ['#36A2EB', '#4BC0C0']
+    );
+
+    // 2. Graphique Demandes congé
+    createPieChart(
+        'demandesChart',
+        ['En cours', 'Acceptées'],
+        [chartData.demandes.enCours, chartData.demandes.acceptees],
+        ['#FF6384', '#FFCE56']
+    );
+
+    // 3. Diagramme Barres - Candidatures par poste
+    if (chartData.candidaturesParPoste && chartData.candidaturesParPoste.length > 0) {
+        const ctx = document.getElementById('candidaturesParPosteChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.candidaturesParPoste.map(item => item.poste),
+                    datasets: [{
+                        label: 'Nombre de candidatures',
+                        data: chartData.candidaturesParPoste.map(item => item.nombre),
+                        backgroundColor: '#42A5F5',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0,
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // 4. Diagramme Barres - Types de congé
+    if (chartData.typesConge && chartData.typesConge.length > 0) {
+        const ctx = document.getElementById('typesCongeChart');
+        if (ctx) {
+            console.log("Création graphique types congé avec:", {
+                labels: chartData.typesConge.map(item => item.type),
+                data: chartData.typesConge.map(item => item.nombre)
+            });
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.typesConge.map(item => item.type),
+                    datasets: [{
+                        label: 'Nombre de demandes',
+                        data: chartData.typesConge.map(item => item.nombre),
+                        backgroundColor: [
+                            '#7E57C2',
+                            '#7E57C2',
+                            '#7E57C2',
+                            '#7E57C2',
+                            '#7E57C2'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0,
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // 5. Diagramme Barres - Distribution des salaires
+    if (chartData.salaires && chartData.salaires.length > 0) {
+        const ctx = document.getElementById('salairesChart');
+        if (ctx) {
+            console.log("Création graphique salaires avec:", {
+                labels: chartData.salaires.map(item => item.salaire + ' €'),
+                data: chartData.salaires.map(item => item.nombre)
+            });
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.salaires.map(item => item.salaire + ' DH'),
+                    datasets: [{
+                        label: "Nombre d'employés",
+                        data: chartData.salaires.map(item => item.nombre),
+                        backgroundColor: [
+                            '#FFA726',
+                            '#FFA726',
+                            '#FFA726',
+                            '#FFA726',
+                            '#FFA726',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0,
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // 6. Diagramme Barres Groupées - Heures par employé
+    if (chartData.heures && chartData.heures.length > 0) {
+        const ctx = document.getElementById('heuresEmployeChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.heures.map(item => 'Employé ' + item.employeId),
+                    datasets: [
+                        {
+                            label: 'Heures normales',
+                            data: chartData.heures.map(item => item.heuresTravaillees),
+                            backgroundColor: '#42A5F5'
+                        },
+                        {
+                            label: 'Heures supplémentaires',
+                            data: chartData.heures.map(item => item.heuresSup),
+                            backgroundColor: '#FF7043'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: false,
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Heures travaillées'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+});
+</script>
+{% endblock %}

@@ -40,4 +40,42 @@ class ContratRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    //DISTRIBUTION DE SALAIRES
+    public function distributionSalaires(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('SUM(c.salaire) AS totalSalaire', 'COUNT(c.id) AS nombreContrats')
+            ->groupBy('c.salaire')
+            ->orderBy('c.salaire', 'ASC')
+            ->getQuery()
+            ->getResult();
+        
+    }
+    //NBR CONTRATS ACTIFS
+    public function countContratsActifs(): int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id)')
+            ->where('c.date_fin IS NULL OR c.date_fin > :currentDate') 
+            ->setParameter('currentDate', new \DateTime()) 
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    //CONTRATS EXPIRANTS DANS 3 MOIS
+    public function countContratsExpirantDans3Mois(): int
+    {
+        $dateLimite = new \DateTime();
+        $dateLimite->add(new \DateInterval('P3M')); 
+
+        return $this->createQueryBuilder('c')
+            ->select('COUNT(c.id)')
+            ->where('c.date_fin IS NOT NULL') 
+            ->andWhere('c.date_fin <= :dateLimite') 
+            ->setParameter('dateLimite', $dateLimite)
+            ->getQuery()
+            ->getSingleScalarResult(); 
+    }
+
+
 }

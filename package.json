@@ -30,6 +30,7 @@
   "dependencies": {
     "browserslist": "^4.24.4",
     "caniuse-lite": "^1.0.30001715",
+    "chart.js": "^4.4.9",
     "electron-to-chromium": "^1.5.142",
     "escalade": "^3.2.0",
     "fraction.js": "^4.3.7",

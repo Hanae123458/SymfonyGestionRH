@@ -16,6 +16,15 @@ class EmployeRepository extends ServiceEntityRepository
         parent::__construct($registry, Employe::class);
     }
 
+    /**
+     * Récupère l'évolution des employés par mois.
+     * Cela peut être basé sur la date de création des employés (à ajuster selon ton besoin).
+     *
+     * @return array
+     */
+  
+
+
     //    /**
     //     * @return Employe[] Returns an array of Employe objects
     //     */

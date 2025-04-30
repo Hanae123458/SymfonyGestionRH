@@ -40,4 +40,41 @@ class DemandeCongeRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * Récupère la répartition des types de congés
+     *
+     * @return array
+     */
+    //REPARTITION DES CONGE PAR TYPE
+    public function repartitionTypesConge(): array
+    {
+        return $this->createQueryBuilder('d')
+            ->select('d.type_conge', 'COUNT(d.id) AS nombreDemandes')
+            ->groupBy('d.type_conge')
+            ->getQuery()
+            ->getResult();
+    }
+    //NBR DEMANDE EN COURS
+    public function countDemandesEnCours(): int
+    {
+        return $this->createQueryBuilder('d')
+            ->select('COUNT(d.id)')
+            ->where('d.statut = :statut')
+            ->setParameter('statut', 'en cours') 
+            ->getQuery()
+            ->getSingleScalarResult(); 
+    }
+    //NBR DEMANDE ACCEPTEE
+    public function countDemandesAcceptees(): int
+    {
+        return $this->createQueryBuilder('d')
+            ->select('COUNT(d.id)')
+            ->where('d.statut = :statut') 
+            ->setParameter('statut', 'acceptée') 
+            ->getQuery()
+            ->getSingleScalarResult(); 
+    }
+
+
 }

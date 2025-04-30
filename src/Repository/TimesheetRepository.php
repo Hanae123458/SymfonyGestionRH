@@ -40,4 +40,21 @@ class TimesheetRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    //HEURES TRAVAILLEES
+    public function getHeuresTravailleesParEmploye(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->select('IDENTITY(t.employe) AS employe_id, t.heures_travail')
+            ->getQuery()
+            ->getResult();  
+    }    
+    //HEURES SUPPLEMENTAIRES
+    public function getHeuresSupplementairesParEmploye(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->select('IDENTITY(t.employe) AS employe_id, t.heures_sup')
+            ->getQuery()
+            ->getResult();  
+    }
 }
