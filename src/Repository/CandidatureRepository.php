@@ -63,23 +63,13 @@ class CandidatureRepository extends ServiceEntityRepository
     }
     //REPARTITION DE CANDIDATURES PAR POSTE
     public function repartitionCandidaturesParPoste(): array
-    {
-        // Requête pour obtenir la répartition des candidatures par poste
-        $qb = $this->createQueryBuilder('c')
-            ->select('c.poste', 'COUNT(c.id) as nombreCandidatures')
-            ->groupBy('c.poste')
-            ->getQuery();
-
-        $result = $qb->getResult();
-
-        // Convertir le résultat en un tableau associatif
-        $repartition = [];
-        foreach ($result as $row) {
-            $repartition[$row['poste']] = (int)$row['nombreCandidatures'];
-        }
-
-        return $repartition;
-    }
+{
+    return $this->createQueryBuilder('c')
+        ->select('c.poste as poste', 'COUNT(c.id) as nombre')
+        ->groupBy('c.poste')
+        ->getQuery()
+        ->getResult();
+}
     //NBR CANDIDATURES EN COURS
     public function countCandidaturesEnCours(): int
     {

@@ -23,40 +23,62 @@ function initDashboardCharts() {
         }
     });
 
-    // 2. Création spécifique du graphique des salaires
-    if (distributionSalaires.length > 0) {
-        createChart(
-            'salairesChart',
-            {
-                type: 'bar',
-                data: {
-                    labels: distributionSalaires.map(item => `${item.salaire} €`),
-                    datasets: [{
-                        label: "Nombre d'employés",
-                        data: distributionSalaires.map(item => item.nombre),
-                        backgroundColor: '#FFA726',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                precision: 0,
-                                stepSize: 1
-                            }
+    // 4. Diagramme Barres - Types de congé
+    if (chartData.typesConge.length > 0) {
+        new Chart(document.getElementById('typesCongeChart'), {
+            type: 'bar',
+            data: {
+                labels: chartData.typesConge.map(item => item.type),
+                datasets: [{
+                    label: 'Nombre de demandes',
+                    data: chartData.typesConge.map(item => item.nombre),
+                    backgroundColor: '#66BB6A',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
                         }
                     }
                 }
             }
-        );
-    } else {
-        console.warn('Aucune donnée de salaire disponible');
+        });
     }
 
-    // [Ajoutez ici les autres graphiques de la même manière]
+    // 5. Diagramme Barres - Distribution des salaires
+    if (chartData.salaires.length > 0) {
+        new Chart(document.getElementById('salairesChart'), {
+            type: 'bar',
+            data: {
+                labels: chartData.salaires.map(item => item.salaire + ' €'),
+                datasets: [{
+                    label: "Nombre d'employés",
+                    data: chartData.salaires.map(item => item.nombre),
+                    backgroundColor: '#FFA726',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            precision: 0
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    
 }
 
 function createChart(id, config) {

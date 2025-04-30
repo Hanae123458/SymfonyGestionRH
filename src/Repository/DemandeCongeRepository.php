@@ -49,11 +49,19 @@ class DemandeCongeRepository extends ServiceEntityRepository
     //REPARTITION DES CONGE PAR TYPE
     public function repartitionTypesConge(): array
     {
-        return $this->createQueryBuilder('d')
-            ->select('d.type_conge', 'COUNT(d.id) AS nombreDemandes')
+        $results = $this->createQueryBuilder('d')
+            ->select('d.type_conge as type', 'COUNT(d.id) as nombre')
             ->groupBy('d.type_conge')
             ->getQuery()
             ->getResult();
+    
+        // Formatage pour Chart.js
+        return array_map(function($item) {
+            return [
+                'type' => $item['type'],
+                'nombre' => (int)$item['nombre'] // Conversion en int
+            ];
+        }, $results);
     }
     //NBR DEMANDE EN COURS
     public function countDemandesEnCours(): int

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
-
 use App\Repository\EmployeRepository;
 use App\Repository\ContratRepository;
 use App\Repository\DemandeCongeRepository;
@@ -12,6 +11,7 @@ use App\Repository\CandidatureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Psr\Log\LoggerInterface; // Ajoutez cette ligne
 
 class DashboardController extends AbstractController
 {
@@ -20,7 +20,8 @@ class DashboardController extends AbstractController
         ContratRepository $contratRepository,
         DemandeCongeRepository $demandeCongeRepository,
         TimesheetRepository $timesheetRepository,
-        CandidatureRepository $candidatureRepository
+        CandidatureRepository $candidatureRepository,
+        LoggerInterface $logger // Ajoutez ce paramètre
     ): Response
     {
         // --- CANDIDATURES ---
@@ -35,18 +36,10 @@ class DashboardController extends AbstractController
         $distributionSalaires = $contratRepository->distributionSalaires();  
         $distributionSalaires = array_map(function($item) {
             return [
-                'salaire' => $item['salaire'] ?? $item['montant'] ?? 0, // Adaptez selon la structure réelle
+                'salaire' => $item['salaire'] ?? $item['montant'] ?? 0,
                 'nombre' => $item['nombre'] ?? $item['count'] ?? 0
             ];
          }, $distributionSalaires);
-
-         /* 
-         $distributionSalaires = [
-            ['salaire' => 2000, 'nombre' => 5],
-            ['salaire' => 3000, 'nombre' => 3], 
-            ['salaire' => 4000, 'nombre' => 2]
-        ];         
-         */
 
          // --- EMPLOYES ---
          $nombreEmployes = $employeRepository->count([]);  
@@ -55,6 +48,9 @@ class DashboardController extends AbstractController
         $demandesEnCours = $demandeCongeRepository->countDemandesEnCours();  
         $demandesAcceptees = $demandeCongeRepository->countDemandesAcceptees();  
         $typesConge = $demandeCongeRepository->repartitionTypesConge();  
+        
+        // Utilisez le logger Symfony au lieu de console.log
+        $logger->info('Types de congé:', $typesConge);
 
         // --- TIMESHEETS ---
         $heuresTravailleesParEmploye = $timesheetRepository->getHeuresTravailleesParEmploye();
@@ -76,7 +72,6 @@ class DashboardController extends AbstractController
                 'heuresSup' => $heuresSup,
             ];
         }
-        
 
         return $this->render('dashboard/index.html.twig', [
             'totalCandidatures' => $totalCandidatures,

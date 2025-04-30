@@ -42,16 +42,24 @@ class ContratRepository extends ServiceEntityRepository
     //    }
 
     //DISTRIBUTION DE SALAIRES
-    public function distributionSalaires(): array
-    {
-        return $this->createQueryBuilder('c')
-            ->select('SUM(c.salaire) AS totalSalaire', 'COUNT(c.id) AS nombreContrats')
-            ->groupBy('c.salaire')
-            ->orderBy('c.salaire', 'ASC')
-            ->getQuery()
-            ->getResult();
-        
-    }
+    // Dans ContratRepository
+public function distributionSalaires(): array
+{
+    $results = $this->createQueryBuilder('c')
+        ->select('c.salaire', 'COUNT(c.id) as nombre')
+        ->groupBy('c.salaire')
+        ->orderBy('c.salaire', 'ASC')
+        ->getQuery()
+        ->getResult();
+
+    // Formatage cohérent
+    return array_map(function($item) {
+        return [
+            'salaire' => (float)$item['salaire'], // Conversion en float
+            'nombre' => (int)$item['nombre']      // Conversion en int
+        ];
+    }, $results);
+}
     //NBR CONTRATS ACTIFS
     public function countContratsActifs(): int
     {
