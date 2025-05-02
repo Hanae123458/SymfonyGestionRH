@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
 {% block title %}Employé{% endblock %}
 {% block body %}
-<table class="table table-striped table-hover table-bordered align-middle shadow-sm">
-  <thead style="background-color: white;">
-    <tr>
+<table class="table" >
+    <thead>
+    <tr style="background-color: rgba(0, 15, 108, 0.44); color: white;">
       <th scope="col">ID</th>
       <th scope="col">Nom</th>
       <th scope="col">Prénom</th>
@@ -12,30 +12,38 @@
       <th scope="col">Salaire</th>
       <th scope="col">Date Embauche</th>
       <th scope="col">Contrat ID</th>
-      <th scope="col">Modification</th>
-      <th scope="col">Suppression</th>
+      <th scope="col"> <i class="bi bi-pencil-fill mr-1"></i> Modification</th>
+      <th scope="col"> <i class="bi bi-trash-fill mr-1"></i> Suppression</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="divide-y divide-gray-100">
     {% for employe in employe %}
-        <tr>
-            <td>{{ employe.id }}</td>
-            <td>{{ employe.nom }}</td>
-            <td>{{ employe.prenom }}</td>
-            <td>{{ employe.email }}</td>
-            <td>{{ employe.poste }}</td>
-            <td>{{ employe.salaire }}</td>
-            <td>{{ employe.DateEmbauche }}</td>
-                <td>
-                    {% for contrat in employe.contrat %}
+        <tr class="bg-gray-50">
+            <td class="p-3 whitespace-nowrap">{{ employe.id }}</td>
+            <td class="p-3 whitespace-nowrap">{{ employe.nom }}</td>
+            <td class="p-3 whitespace-nowrap">{{ employe.prenom }}</td>
+            <td class="p-3 whitespace-nowrap">{{ employe.email }}</td>
+            <td class="p-3 whitespace-nowrap">{{ employe.poste }}</td>
+            <td class="p-3 whitespace-nowrap">{{ employe.salaire }}</td>
+            <td class="p-3 whitespace-nowrap">{{ employe.DateEmbauche }}</td>
+            <td class="p-3 whitespace-nowrap">
+                        {% for contrat in employe.contrat %}
                         {{ contrat.id }} 
                         {% if not loop.last %}, {% endif %}
                         {% else %}
                             Aucun contrat
                         {% endfor %}
-                </td>
-            <td><a href="modifier/{{employe.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color: #28a745;">Modifier</a></td>
-            <td><a href="supprimer/{{employe.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color:rgb(228, 10, 32);" onclick="return confirm('Voulez-vous vraiment supprimer cet employé?')">Supprimer</a></td>
+                  </td>
+            <td class="p-3 whitespace-nowrap">
+              <a href="modifier/{{employe.ID}}"  class="btn-modifier inline-block px-4 py-2 rounded-pill text-sm text-white border-2">
+               Modifier
+              </a>
+            </td>
+            <td class="p-3 whitespace-nowrap">
+              <a href="supprimer/{{employe.ID}}" class="btn-supprimer inline-block px-4 py-2 rounded-pill text-sm text-white border-2" onclick="return confirm('Voulez-vous vraiment supprimer cet employé?')">
+               Supprimer
+              </a>
+            </td>
         </tr>
     {% endfor %}  
   </tbody>

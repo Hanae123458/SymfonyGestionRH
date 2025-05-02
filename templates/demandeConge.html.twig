@@ -1,31 +1,40 @@
 {% extends "base.html.twig" %}
-{% block title %}Demande Congé{% endblock %}
+{% block title %}Demande de congé{% endblock %}
 {% block body %}
-<table class="table table-striped table-hover table-bordered align-middle shadow-sm">
-  <thead style="background-color: white;">
-    <tr>
+<table class="table">
+    <thead>
+    <tr style="background-color: rgba(0, 15, 108, 0.44); color: white;">
       <th scope="col">ID</th>
       <th scope="col">Employe ID</th>
       <th scope="col">Type Congé</th>
       <th scope="col">Date début</th>
       <th scope="col">Date fin</th>
       <th scope="col">Statut</th>
-      <th scope="col">Modification</th>
-      <th scope="col">Suppression</th>
+      <th scope="col"> <i class="bi bi-pencil-fill mr-1"></i> Modification</th>
+      <th scope="col"> <i class="bi bi-trash-fill mr-1"></i> Suppression</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="divide-y divide-gray-100">
     {% for demande in demandeConge %}
-        <tr>
-            <td>{{ demande.id }}</td>
-            <td>{{ demande.employe.id }}</td>
-            <td>{{ demande.TypeConge }}</td>
-            <td>{{ demande.DateDebut }}</td>
-            <td>{{ demande.DateFin }}</td>
-            <td>{{ demande.statut }}</td>
-            <td><a href="modifierDemandeConge/{{demande.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color: #28a745;">Modifier</a></td>
-            <td><a href="supprimerDemandeConge/{{demande.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color:rgb(228, 10, 32);" onclick="return confirm('Voulez-vous vraiment supprimer cette candidature?')">Supprimer</a></td>
+        <tr class="bg-gray-50">
+            <td class="p-3 whitespace-nowrap">{{ demande.id }}</td>
+            <td class="p-3 whitespace-nowrap">{{ demande.employe.id }}</td>
+            <td class="p-3 whitespace-nowrap">{{ demande.TypeConge }}</td>
+            <td class="p-3 whitespace-nowrap">{{ demande.DateDebut }}</td>
+            <td class="p-3 whitespace-nowrap">{{ demande.DateFin }}</td>
+            <td class="p-3 whitespace-nowrap">{{ demande.statut }}</td>
+            <td class="p-3 whitespace-nowrap">
+              <a href="modifierDemandeConge/{{demande.ID}}"  class="btn-modifier inline-block px-4 py-2 rounded-pill text-sm text-white border-2">
+               Modifier
+              </a>
+            </td>
+            <td class="p-3 whitespace-nowrap">
+              <a href="modifierDemandeConge/{{demande.ID}}" class="btn-supprimer inline-block px-4 py-2 rounded-pill text-sm text-white border-2" onclick="return confirm('Voulez-vous vraiment supprimer cette demande de congé?')">
+               Supprimer
+              </a>
+            </td>
         </tr>
     {% endfor %}  
   </tbody>
-</table>{% endblock %}
+</table>
+{% endblock %}

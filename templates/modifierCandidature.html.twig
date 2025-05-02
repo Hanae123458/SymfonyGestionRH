@@ -1,17 +1,41 @@
 {% extends "base.html.twig" %}
-  {% block title %}modification candidature{% endblock %}
-    {% block body %}
-   
-   <form action="/modificationCandidature" method="post">
-   <input type="hidden"  name="id" value="{{ candidature.id }}" required>
-        Poste : <input type="text" name="poste" value="{{candidature.poste}}" required>
-        <br>
-        Nom du Candidat : <input type="text" name ="candidatNom" value="{{candidature.candidatNom}}" required>
-        <br>
-        Email : <input type="mail" name ="email"value="{{candidature.email}}" >
-        <br>
-        Statut : <input type="text" name="statut" value="{{candidature.statut}}" required>
-        <br>
-        <input type="submit" value="Valider">
-   </form>
-        {% endblock %}
+{% block title %}modifier candidature{% endblock %}
+{% block body %}
+<section class="bg-white p-6 rounded-lg w-full max-w-lg" style="box-shadow: 0 4px 10px rgba(181, 10, 228, 0.35);">
+    <h1 class="font-bold text-center mb-4" style="color:rgba(25, 10, 228, 0.35);">Modifier une candidature</h1>
+    
+    <form action="/modificationCandidature" method="post"> 
+     <div>
+          <input type="hidden"  name="id" value="{{ candidature.id }}" required>
+     </div> 
+     
+     <div class="text-center mb-4">
+        <label for="poste" class="input-form">Poste</label>
+        <input id="poste" type="text" name="poste" value="{{candidature.poste}}" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center mb-4">
+        <label for="candidatNom" class="input-form">Nom du candidat </label>
+        <input id="candidatNom" type="text" name="candidatNom" value="{{candidature.candidatNom}}" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center mb-4">
+        <label for="email" class="input-form">Email</label>
+        <input id="email" type="email" name="email" value="{{candidature.email}}" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center mb-4">
+        <label for="statut" class="input-form">Statut</label>
+        <input id="statut" type="text" name="statut" value="{{candidature.statut}}" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center"> 
+        <button class="btn-submit border border-gray-300 rounded" type="submit">Modifier</button>
+      </div>
+    </form>
+  </section>
+{% endblock %}

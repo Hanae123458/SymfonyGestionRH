@@ -1,22 +1,46 @@
 {% extends "base.html.twig" %}
-  {% block title %}ajout demande congés{% endblock %}
-    {% block body %}
-   
-   <form action="ajouterDemandeConge" method="post">
-        Type Congé : <input type="text" name="typeConge" required>
-        <br>
-        Date début : <input type="date" name ="dateDebut" required>
-        <br>
-        Date fin : <input type="date" name ="dateFin">
-        <br>
-        Statut: <input type="text" name="statut" required>
-        <br>
-        <label for="employe">Employé :</label>
-        <select name="employe" id="employe" required>
-            {% for employe in employes %}  {# Assurez-vous d'avoir une variable 'employes' passée au template #}
+{% block title %}ajouter demande de congé{% endblock %}
+{% block body %}
+<section class="bg-white p-6 rounded-lg w-full max-w-lg" style="box-shadow: 0 4px 10px rgba(181, 10, 228, 0.35);">
+    <h1 class="font-bold text-center mb-4" style="color:rgba(25, 10, 228, 0.35);">Ajouter une demande de congé</h1>
+    
+    <form action="ajouterDemandeConge" method="post">  
+     <div class="text-center mb-4">
+        <label for="typeConge" class="input-form">Type de congé:</label>
+        <input id="typeConge" type="text" name="typeConge" placeholder="Veuillez entrer le type de contrat" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center mb-4">
+        <label for="dateDebut" class="input-form">Date début:</label>
+        <input id="dateDebut" type="date" name="dateDebut" placeholder="Veuillez entrer la date du début de contrat" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center mb-4">
+        <label for="dateFin" class="input-form">Date fin:</label>
+        <input id="dateFin" type="date" name="dateFin" placeholder="Veuillez entrer la date de fin du contrat" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center mb-4">
+        <label for="statut" class="input-form">Statut:</label>
+        <input id="statut" type="text" name="statut" placeholder="Veuillez entrer le salaire de l'employé" required
+               class="input text-center px-4 py-2 border border-gray-300 rounded">
+      </div>
+
+      <div class="text-center mb-4">
+        <label for="employe" class="input-form">Employé:</label>
+        <select name="employe" id="employe" required class="input text-center px-4 py-2 border border-gray-300 rounded">
+            {% for employe in employes %} 
                 <option value="{{ employe.id }}">{{ employe.nom }} {{ employe.prenom }}</option>
             {% endfor %}
         </select>
-        <input type="submit" value="Valider">
-   </form>
-        {% endblock %}
+      </div>
+
+      <div class="text-center"> 
+        <button class="btn-submit border border-gray-300 rounded" type="submit">Ajouter</button>
+      </div>
+    </form>
+  </section>
+{% endblock %}

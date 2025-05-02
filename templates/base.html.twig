@@ -11,6 +11,51 @@
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
             
       <style>
+            .input-form{ 
+              font-weight: 700;
+            }
+            .input{
+              width: 350px !important;
+              background-color:rgb(252, 245, 255);
+            }
+            .input:hover, .input:active,.input:focus {
+              background-color: rgb(241, 203, 255) !important;
+              border-color:rgb(250, 242, 253) !important;
+              box-shadow: 0 6px 15px rgb(250, 242, 253)  !important;
+            }
+            .btn-submit{
+              margin-top:1px;
+              margin-bottom:10px;
+              background-color:rgba(123, 243, 116, 0.69);
+              width:100px;
+              height:40px;
+            }
+            .btn-submit:hover, .btn-submit:active,.btn-submit:focus {
+              background-color:rgba(61, 247, 52, 0.69) !important;
+              border-color:rgba(61, 247, 52, 0.69) !important;
+              box-shadow: 0 6px 15px rgba(61, 247, 52, 0.69) !important;
+            }
+            /*MODIFIER*/
+            .btn-modifier{
+              background-color:rgba(37, 199, 28, 0.69); 
+              text-decoration: none !important;
+            }
+            .btn-modifier:hover, .btn-modifier:active,.btn-modifier:focus {
+              background-color:rgb(17, 164, 0) !important;
+              border-color:rgb(17, 164, 0) !important;
+              box-shadow: 0 6px 15px rgb(17, 164, 0) !important;
+            }
+            /*SUPPRIMER*/
+            .btn-supprimer{
+              background-color:rgba(228, 10, 32, 0.7);  
+              text-decoration: none !important;
+            }
+            .btn-supprimer:hover, .btn-supprimer:active,.btn-supprimer:focus {
+              background-color:rgb(251, 0, 25) !important;
+              border-color:rgb(251, 0, 25) !important;
+              box-shadow: 0 6px 15px rgb(251, 0, 25) !important;
+            }
+            
             h3 {
               font-size: 2.4rem;
               margin-bottom: 20px;
@@ -118,17 +163,6 @@
               outline: none;
             }
 
-
-            @media (max-width: 700px) {
-              .link-pair {
-                flex-direction: column;
-                min-width: auto;
-              }
-              a.btn {
-                min-width: 100%;
-              }
-            }
-
             .section-central {
               margin-top: 2rem;
               margin-bottom: 3.5rem;
@@ -145,6 +179,7 @@
             }
 
             .card-chic {
+              box-shadow: 0 4px 10px rgba(181, 10, 228, 0.35);
               background: #ffffff;
               border: 1px solid #ffffff;
               border-radius: 15px;
@@ -152,11 +187,6 @@
               text-align: center;
               transition: box-shadow 0.2s;
               height: 100%;
-            }
-
-           .card-chic:hover {
-            box-shadow: 0 6px 15px rgb(255, 96, 205);
-            transform: translateY(-4px);
             }
                           
             .card-chic i {
@@ -179,12 +209,6 @@
               margin-bottom: 0;
             }
 
-            @media (max-width: 991px) {
-              .section-central .row > div {
-                margin-bottom: 1.5rem;
-              }
-            }
-
             .navbar {
                 background:rgb(8, 1, 52);
                 border-bottom: 2px rgb(70, 198, 241);
@@ -196,7 +220,6 @@
             }
 
             .navbar-brand.active, .navbar-brand:focus, .navbar-brand:hover {
-                
                 color: #fff6ec;
             }
              
@@ -211,10 +234,12 @@
                 background:rgb(255, 221, 135);
                 border-radius: 5px;
             }
+
             .container {
                 margin-bottom: 80px;
                 padding-top: 20px; 
             }
+
             footer {
                 background:rgb(6, 0, 36);
                 color: #fff6ec;
@@ -231,15 +256,7 @@
                 z-index: 1000;
                 font-family: 'Segoe UI', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             }
-            /*
-            canvas {
-                width: 100% !important;
-                height: 300px !important;
-                margin: 0 auto;
-                display: block;
-            }
-            */
-           
+          /*DASHBOARD*/
           .chart-container {
               position: relative;
               margin: auto;
@@ -253,98 +270,114 @@
                 flex: 1;
             }
             
-            
-/*
-            LOGIN REGISTER
-            form {
-                background: #fff;
-                border-radius: 20px;
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-                padding: 0;
-                margin: 20px auto;
-                max-width: 850px;
-                display: flex;
-                overflow: hidden;
-                flex-direction: row;
-                transition: 0.4s ease-in-out;
+           /*REGISTER LOGIN*/
+          .form-login, .form-register {
+              background: white;
+              padding: 2rem 3rem;
+              border-radius: 12px;
+              box-shadow: 0 4px 10px rgba(181, 10, 228, 0.35) !important;
+              width: 100%;
+              max-width: 400px;
+              margin-bottom: 0; 
+          }
+        
+          .form-wrapper {
+              height: auto;
+              height: 100vh;
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+              padding-top: 1%;
+              margin-bottom: 0; 
+          }
+
+          .form-login h2, .form-register h2 {
+              text-align: center;
+              margin-bottom: 1.5rem;
+              color: #333;
+          }
+
+          .form-login label, .form-register label {
+              display: block;
+              margin-top: 1rem;
+              margin-bottom: 0.25rem;
+              font-weight: bold;
+              color: #555;
+          }
+
+          .form-login input.form-control, .form-register input.form-control {
+              width: 100%;
+              padding: 0.5rem;
+              border: 1px solid #ccc;
+              border-radius: 8px;
+              box-sizing: border-box;
+          }
+
+          button.btn {
+              width: 100%;
+              padding: 0.75rem;
+              margin-top: 1.5rem;
+              border: none;
+              border-radius: 8px;
+              background-color:rgba(170, 98, 246, 0.78) !important;
+              color: white;
+              font-size: 1rem;
+              cursor: pointer;
+          }
+
+          button.btn:hover {
+              background-color:rgba(117, 6, 235, 0.78) !important;
+          }
+
+          p.mt-3 {
+              text-align: center;
+              margin-top: 1.5rem;
+              color: #444;
+          }
+
+          a.btn-link {
+              color: #4f46e5;
+              text-decoration: none;
+              font-weight: bold;
+          }
+
+          a.btn-link:hover {
+              text-decoration: underline;
+          }
+                  
+          .alert-danger {
+              background-color: #ffe0e0;
+              color: #b00020;
+              padding: 0.75rem;
+              border-radius: 8px;
+              margin-bottom: 1rem;
+              text-align: center;
+              font-weight: bold;
+          }
+
+            @media (max-width: 768px) {
+                .form-login, .form-modifier, .form-ajout {
+                    width: 100%;
+                    max-width: 100%;
+                }
             }
 
-            .form-side {
-                flex: 1;
-                background: linear-gradient(135deg, #00c6ff, #0072ff);
-                color: white;
-                padding: 50px 30px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-            }
+            @media (max-width: 700px) {
+                .link-pair {
+                  flex-direction: column;
+                  min-width: auto;
+                }
+                a.btn {
+                  min-width: 100%;
+                }
+              }
 
-            .form-side h3 {
-                font-size: 2.5rem;
-                margin-bottom: 15px;
-                font-weight: 700;
-            }
-
-            .form-side p {
-                font-size: 1.2rem;
-                opacity: 0.9;
-            }
-
-            .form-inputs {
-                flex: 1;
-                padding: 50px 40px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                background: #f9f9f9;
-            }
-
-            .form-inputs h2 {
-                margin-bottom: 25px;
-                font-weight: 600;
-                color: #333;
-            }
-
-            label {
-                font-weight: 500;
-                margin-bottom: 8px;
-                color: #555;
-                display: block;
-                font-size: 0.95rem;
-            }
-
-            input.form-control {
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                padding: 12px 15px;
-                margin-bottom: 20px;
-                font-size: 1rem;
-                transition: border 0.3s;
-            }
-
-            input.form-control:focus {
-                border-color: #0072ff;
-                box-shadow: 0 0 0 3px rgba(0,114,255,0.15);
-                outline: none;
-            }
-
-            .btn-primary {
-                background: #0072ff;
-                border: none;
-                padding: 12px 22px;
-                border-radius: 10px;
-                font-weight: 600;
-                font-size: 1.1rem;
-                color: white;
-                transition: all 0.3s ease;
-            }
-
-            .btn-primary:hover {
-                background: #005bb5;
-            }
-            */
+            @media (max-width: 991px) {
+                .section-central .row > div {
+                  margin-bottom: 1.5rem;
+                }
+              }
+    
       </style>
     {% endblock %}
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">

@@ -1,29 +1,38 @@
 {% extends "base.html.twig" %}
 {% block title %}Timesheet{% endblock %}
 {% block body %}
-<table class="table table-striped table-hover table-bordered align-middle shadow-sm">
-  <thead style="background-color: white;">
-    <tr>
+<table class="table">
+    <thead>
+    <tr style="background-color: rgba(0, 15, 108, 0.44); color: white;">
       <th scope="col">ID</th>
       <th scope="col">Employe ID</th>
       <th scope="col">Date</th>
-      <th scope="col">Heures travail</th>
-      <th scope="col">Heueres Sup</th>
-      <th scope="col">Modification</th>
-      <th scope="col">Suppression</th>
+      <th scope="col">Heures travaillées</th>
+      <th scope="col">Heueres supplémentaires</th>
+      <th scope="col"> <i class="bi bi-pencil-fill mr-1"></i> Modification</th>
+      <th scope="col"> <i class="bi bi-trash-fill mr-1"></i> Suppression</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="divide-y divide-gray-100">
     {% for timesheet in timesheet %}
-        <tr>
-            <td>{{ timesheet.id }}</td>
-            <td>{{ timesheet.employe.id }}</td>
-            <td>{{ timesheet.date }}</td>
-            <td>{{ timesheet.HeuresTravail }}</td>
-            <td>{{ timesheet.HeuresSup }}</td>
-            <td><a href="modifierTimesheet/{{timesheet.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color: #28a745;">Modifier</a></td>
-            <td><a href="supprimerTimesheet/{{timesheet.ID}}" class="btn btn-sm rounded-pill text-white" style="background-color:rgb(228, 10, 32);" onclick="return confirm('Voulez-vous vraiment supprimer cette candidature?')">Supprimer</a></td>
+        <tr class="bg-gray-50">
+            <td class="p-3 whitespace-nowrap">{{ timesheet.id }}</td>
+            <td class="p-3 whitespace-nowrap">{{ timesheet.employe.id  }}</td>
+            <td class="p-3 whitespace-nowrap">{{ timesheet.date }}</td>
+            <td class="p-3 whitespace-nowrap">{{ timesheet.HeuresTravail }}</td>
+            <td class="p-3 whitespace-nowrap">{{ timesheet.HeuresSup }}</td>
+            <td class="p-3 whitespace-nowrap">
+              <a href="modifierTimesheet/{{timesheet.ID}}"  class="btn-modifier inline-block px-4 py-2 rounded-pill text-sm text-white border-2">
+               Modifier
+              </a>
+            </td>
+            <td class="p-3 whitespace-nowrap">
+              <a href="modifierTimesheet/{{timesheet.ID}}" class="btn-supprimer inline-block px-4 py-2 rounded-pill text-sm text-white border-2" onclick="return confirm('Voulez-vous vraiment supprimer ce timesheet?')">
+               Supprimer
+              </a>
+            </td>
         </tr>
     {% endfor %}  
   </tbody>
-</table>{% endblock %}
+</table>
+{% endblock %}
