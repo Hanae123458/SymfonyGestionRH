@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% block title %}ajouter timesheet{% endblock %}
 {% block body %}
-<section class="bg-white p-6 rounded-lg w-full max-w-lg" style="box-shadow: 0 4px 10px rgba(181, 10, 228, 0.35);">
+<section class="cadre" style="margin:auto; background:white; width: 700px; box-shadow: 0 6px 15px rgb(241, 203, 255) !important; transition: box-shadow 0.2s;">
     <h1 class="font-bold text-center mb-4" style="color:rgba(25, 10, 228, 0.35);">Ajouter un timesheet</h1>
     
     <form action="ajouterTimesheet" method="post">  
@@ -13,7 +13,7 @@
 
       <div class="text-center mb-4">
         <label for="heuresTravail" class="input-form">Heures travaillées</label>
-        <input id="heuresTravail" type="number" name="heuresTravail" placeholder="Veuillez entrer la heures travaillées" required
+        <input id="heuresTravail" type="number" name="heuresTravail" placeholder="Veuillez entrer les heures travaillées" required
                class="input text-center px-4 py-2 border border-gray-300 rounded">
       </div>
 

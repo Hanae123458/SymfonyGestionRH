@@ -1,3 +1,4 @@
+/*
 import Chart from 'chart.js/auto';
 
 Chart.defaults.font.family = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
@@ -131,3 +132,4 @@ console.log('Données salaires:', {
     labels: window.chartData.distributionSalaires?.map(item => `${item.salaire} €`),
     values: window.chartData.distributionSalaires?.map(item => item.nombre)
 });
+*/

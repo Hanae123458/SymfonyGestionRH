@@ -4,7 +4,6 @@
 
 {% block body %}
 <div class="container">
-    <h1 class="text-center mt-4 mb-5">Tableau de bord</h1>
 
     <div class="row g-4">
         {# Graphique Candidatures #}
@@ -151,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'candidaturesChart',
         ['En cours', 'Acceptées'],
         [chartData.candidatures.enCours, chartData.candidatures.acceptees],
-        ['#36A2EB', '#4BC0C0']
+        ['rgb(88, 0, 121)', 'rgb(218, 181, 235)']
     );
 
     // 2. Graphique Demandes congé
@@ -159,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'demandesChart',
         ['En cours', 'Acceptées'],
         [chartData.demandes.enCours, chartData.demandes.acceptees],
-        ['#FF6384', '#FFCE56']
+        ['rgb(248, 152, 43)', 'rgb(253, 211, 164)']
     );
 
     // 3. Diagramme Barres - Candidatures par poste
@@ -173,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     datasets: [{
                         label: 'Nombre de candidatures',
                         data: chartData.candidaturesParPoste.map(item => item.nombre),
-                        backgroundColor: '#42A5F5',
+                        backgroundColor: 'rgb(0, 30, 85)',
                         borderWidth: 1
                     }]
                 },
@@ -211,11 +210,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         label: 'Nombre de demandes',
                         data: chartData.typesConge.map(item => item.nombre),
                         backgroundColor: [
-                            '#7E57C2',
-                            '#7E57C2',
-                            '#7E57C2',
-                            '#7E57C2',
-                            '#7E57C2'
+                            'rgb(154, 172, 252)',
+                            'rgb(154, 172, 252)',
+                            'rgb(154, 172, 252)',
+                            'rgb(154, 172, 252)',
+                            'rgb(154, 172, 252)'
                         ],
                         borderWidth: 1
                     }]
@@ -254,11 +253,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         label: "Nombre d'employés",
                         data: chartData.salaires.map(item => item.nombre),
                         backgroundColor: [
-                            '#FFA726',
-                            '#FFA726',
-                            '#FFA726',
-                            '#FFA726',
-                            '#FFA726',
+                            'rgb(203, 114, 114)',
+                            'rgb(203, 114, 114)',
+                            'rgb(203, 114, 114)',
+                            'rgb(203, 114, 114)',
+                            'rgb(203, 114, 114)',
                         ],
                         borderWidth: 1
                     }]
@@ -292,12 +291,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         {
                             label: 'Heures normales',
                             data: chartData.heures.map(item => item.heuresTravaillees),
-                            backgroundColor: '#42A5F5'
+                            backgroundColor: 'rgba(5, 107, 0, 0.83)'
                         },
                         {
                             label: 'Heures supplémentaires',
                             data: chartData.heures.map(item => item.heuresSup),
-                            backgroundColor: '#FF7043'
+                            backgroundColor: 'rgba(122, 243, 116, 0.74)'
                         }
                     ]
                 },
