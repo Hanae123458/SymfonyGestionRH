@@ -2,10 +2,11 @@
 {% block title %}ajouter employé{% endblock %}
 {% block body %}
 <section class="cadre" style="margin:auto; background:white; width: 700px; box-shadow: 0 6px 15px rgb(241, 203, 255) !important; transition: box-shadow 0.2s;">
-  <h1 class="font-bold text-center mb-4" style="color:rgba(25, 10, 228, 0.35);">Ajouter un employé</h1>
+  <h1 class="font-bold text-center" style="color:rgba(157, 195, 255, 0.82);">Ajouter un employé</h1>
   
   <div class="form-aligner">
     <form action="ajoutEmploye" method="post">  
+
      <div class="text-center mb-4">
         <label for="nom" class="input-form">Nom:</label>
         <input id="nom" type="text" name="nom" placeholder="Veuillez entrer le nom de l'employé" required
@@ -43,8 +44,9 @@
       </div>
 
       <div class="text-center"> 
-        <button class="btn-submit border border-gray-300 rounded" type="submit">Ajouter</button>
+        <button class="btn-ajouter border border-gray-300 rounded" type="submit">Ajouter</button>
       </div>
+      
     </form>
   </div>
 </section>

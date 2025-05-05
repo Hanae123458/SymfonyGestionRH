@@ -1,34 +1,36 @@
 {% extends "base.html.twig" %}
 {% block title %}modifier timesheet{% endblock %}
 {% block body %}
-<section class="bg-white p-6 rounded-lg w-full max-w-lg" style="box-shadow: 0 4px 10px rgba(181, 10, 228, 0.35);">
-    <h1 class="font-bold text-center mb-4" style="color:rgba(25, 10, 228, 0.35);">Modifier un timesheet</h1>
+<section class="cadre" style="margin:auto; background:white; width: 700px; box-shadow: 0 6px 15px rgb(241, 203, 255) !important; transition: box-shadow 0.2s;">
+    <h1 class="font-bold text-center" style="color:rgba(123, 243, 116, 0.69);">Modifier un timesheet</h1>
     
+  <div class="form-aligner">
     <form action="/modificationTimesheet" method="post"> 
+
         <div>
                <input type="hidden"  name="id" value="{{ timesheet.id }}" required>
         </div> 
 
       <div class="text-center mb-4">
-        <label for="date" class="input-form">Date</label>
+        <label for="date" class="input-form">Date:</label>
         <input id="date" type="date" name="date" value="{{timesheet.date}}" required
                class="input text-center px-4 py-2 border border-gray-300 rounded">
       </div>
 
       <div class="text-center mb-4">
-        <label for="heuresTravail" class="input-form">Heures travaillées</label>
+        <label for="heuresTravail" class="input-form">Heures normales:</label>
         <input id="heuresTravail" type="number" name="heuresTravail" value="{{timesheet.HeuresTravail}}" required
                class="input text-center px-4 py-2 border border-gray-300 rounded">
       </div>
 
       <div class="text-center mb-4">
-        <label for="heuresSup" class="input-form">Heures supplémentaires</label>
+        <label for="heuresSup" class="input-form">Heures supplémentaires:</label>
         <input id="heuresSup" type="number" name="heuresSup" value="{{timesheet.HeuresSup}}" required
                class="input text-center px-4 py-2 border border-gray-300 rounded">
       </div>
 
       <div class="text-center mb-4">
-        <label for="employe" class="input-form">Employé</label>
+        <label for="employe" class="input-form">Employé:</label>
         <select name="employe" id="employe" required class="input text-center px-4 py-2 border border-gray-300 rounded">
             {% for e in employes %}
                 <option value="{{ e.id }}" {% if e.id == timesheet.employe.id %}selected{% endif %}>{{ e.nom }} {{ e.prenom }}</option>
@@ -40,6 +42,8 @@
         <button class="btn-submit border border-gray-300 rounded" type="submit">Modifier</button>
       </div>
 
-    </form>
-  </section>
+    </form>      
+  </div>
+
+</section>
 {% endblock %}

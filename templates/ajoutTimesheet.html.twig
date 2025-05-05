@@ -2,29 +2,29 @@
 {% block title %}ajouter timesheet{% endblock %}
 {% block body %}
 <section class="cadre" style="margin:auto; background:white; width: 700px; box-shadow: 0 6px 15px rgb(241, 203, 255) !important; transition: box-shadow 0.2s;">
-    <h1 class="font-bold text-center mb-4" style="color:rgba(25, 10, 228, 0.35);">Ajouter un timesheet</h1>
+    <h1 class="font-bold text-center" style="color:rgba(157, 195, 255, 0.82);">Ajouter un timesheet</h1>
     
     <form action="ajouterTimesheet" method="post">  
       <div class="text-center mb-4">
-        <label for="date" class="input-form">Date</label>
+        <label for="date" class="input-form">Date:</label>
         <input id="date" type="date" name="date" placeholder="Veuillez entrer la date des heures supplémentaires" required
                class="input text-center px-4 py-2 border border-gray-300 rounded">
       </div>
 
       <div class="text-center mb-4">
-        <label for="heuresTravail" class="input-form">Heures travaillées</label>
+        <label for="heuresTravail" class="input-form">Heures normales:</label>
         <input id="heuresTravail" type="number" name="heuresTravail" placeholder="Veuillez entrer les heures travaillées" required
                class="input text-center px-4 py-2 border border-gray-300 rounded">
       </div>
 
       <div class="text-center mb-4">
-        <label for="heuresSup" class="input-form">Heures supplémentaires</label>
+        <label for="heuresSup" class="input-form">Heures supplémentaires:</label>
         <input id="heuresSup" type="number" name="heuresSup" placeholder="Veuillez entrer les heures supplémentaires" required
                class="input text-center px-4 py-2 border border-gray-300 rounded">
       </div>
 
       <div class="text-center mb-4">
-        <label for="employe" class="input-form">Employé</label>
+        <label for="employe" class="input-form">Employé:</label>
         <select name="employe" id="employe" required class="input text-center px-4 py-2 border border-gray-300 rounded">
             {% for employe in employes %} 
                 <option value="{{ employe.id }}">{{ employe.nom }} {{ employe.prenom }}</option>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="text-center"> 
-        <button class="btn-submit border border-gray-300 rounded" type="submit">Ajouter</button>
+        <button class="btn-ajouter border border-gray-300 rounded" type="submit">Ajouter</button>
       </div>
     </form>
   </section>

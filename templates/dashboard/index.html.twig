@@ -58,7 +58,7 @@
         <div class="col-md-6">
             <div class="card-chic h-100">
                 <div class="card-body">
-                    <h4 class="text-center mb-4">Distribution des salaires</h4>
+                    <h4 class="text-center mb-4">Distribution des salaires(contrat)</h4>
                     <div class="chart-container">
                         <canvas id="salairesChart"></canvas>
                     </div>
@@ -70,7 +70,7 @@
         <div class="col-md-6">
             <div class="card-chic h-100">
                 <div class="card-body">
-                    <h4 class="text-center mb-4">Heures par employé</h4>
+                    <h4 class="text-center mb-4">Heures travaillées</h4>
                     <div class="chart-container">
                         <canvas id="heuresEmployeChart"></canvas>
                     </div>
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'candidaturesChart',
         ['En cours', 'Acceptées'],
         [chartData.candidatures.enCours, chartData.candidatures.acceptees],
-        ['rgb(88, 0, 121)', 'rgb(218, 181, 235)']
+        ['rgb(6, 171, 226)', 'rgba(165, 230, 255, 0.82)']
     );
 
     // 2. Graphique Demandes congé
@@ -253,11 +253,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         label: "Nombre d'employés",
                         data: chartData.salaires.map(item => item.nombre),
                         backgroundColor: [
-                            'rgb(203, 114, 114)',
-                            'rgb(203, 114, 114)',
-                            'rgb(203, 114, 114)',
-                            'rgb(203, 114, 114)',
-                            'rgb(203, 114, 114)',
+                            'rgb(218, 181, 235)',
+                            'rgb(218, 181, 235)',
+                            'rgb(218, 181, 235)',
+                            'rgb(218, 181, 235)',
+                            'rgb(218, 181, 235)',
                         ],
                         borderWidth: 1
                     }]
