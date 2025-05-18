@@ -1,0 +1,43 @@
+@startuml
+actor "Responsable RH" as RH
+participant "Application GRH" as App
+
+== Consultation des tables ==
+RH -> App : Consulter la liste des Employés/Candidatures/Contrats/Demandes de congé/Timesheet
+activate App
+App --> RH : Afficher liste des Employés/Candidatures/Contrats/Demandes de congé/Timesheet
+deactivate App
+
+== Ajout ==
+    RH -> App : Cliquer sur "Ajouter"
+    activate App
+    App --> RH :Afficher formulaire d'ajout
+    deactivate App
+    RH -> App : Remplir formulaire d'ajout
+    activate App
+    App --> RH : Ajout enregistré avec succès 
+    deactivate App
+
+== Modification ==
+    RH -> App : Cliquer sur "Modifier" 
+    activate App
+    App --> RH : Afficher formulaire de modification
+    deactivate App
+    RH -> App : Remplir formulaire de modification
+    activate App
+    App --> RH : Modification enregistréé avec succès 
+    deactivate App
+    
+
+== Suppression ==
+    RH -> App : Cliquer sur "Supprimer"
+    activate App
+    App --> RH : Afficher une alerte "Voulez-vous vraiment supprimer ...?(OK / Annuler)"
+      alt Clique sur "OK"
+        App --> RH : Afficher liste rafraîchie après suppression
+    else Clique sur "Annuler"
+        App --> RH : Afficher la même  liste 
+    end
+  deactivate App
+
+@enduml
