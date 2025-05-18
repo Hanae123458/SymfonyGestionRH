@@ -1,0 +1,52 @@
+@startuml
+class Candidature {
+    - id: int
+    - poste: string
+    - candidat_nom: string
+    - email: string
+    - statut: string
+}
+
+class Employe {
+    - id: int
+    - nom: string
+    - prenom: string
+    - email: string
+    - poste: string
+    - salaire: float
+    - date_embauche: date
+    - contrat_id: int
+}
+
+class Contrat {
+    - id: int
+    - type: string
+    - date_debut: date
+    - date_fin: date
+    - salaire: float
+    - employee_id: int
+}
+
+class DemandeConge {
+    - id: int
+    - employee_id: int
+    - type_conge: string
+    - date_debut: date
+    - date_fin: date
+    - statut: string
+}
+
+class Timesheet {
+    - id: int
+    - employee_id: int
+    - date: date
+    - heures_travail: int
+    - heures_sup: int
+}
+
+Employe --> Candidature : issu de
+Employe --* Contrat : a un
+Employe --* DemandeConge : fait
+Employe --* Timesheet : a
+
+@enduml
