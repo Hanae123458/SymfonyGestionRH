@@ -1,0 +1,86 @@
+@startuml
+left to right direction
+
+actor "Responsable RH" as RH
+
+rectangle "Application web de GRH" {
+     usecase UC1 as "Consulter les candidatures"
+     usecase UC11 as "Ajouter candidature"
+     usecase UC12 as "Modifier candidature"
+     usecase UC13 as "Supprimer candidature"
+
+     usecase UC2 as "Consulter les employés"
+     usecase UC21 as "Ajouter employé"
+     usecase UC22 as "Modifier employé"
+     usecase UC23 as "Supprimer employé"
+
+     usecase UC3 as "Consulter les contrats"
+     usecase UC31 as "Ajouter contrat"
+     usecase UC32 as "Modifier contrat"
+     usecase UC33 as "Supprimer contrat"
+
+     usecase UC4 as "Consulter les demandes de congés"
+      usecase UC41 as "Ajouter demande de congé"
+      usecase UC42 as "Modifier demande de congé"
+      usecase UC43 as "Supprimer demande de congé"
+
+     usecase UC5 as "Consulter les feuilles de temps"
+     usecase UC51 as "Ajouter feuille de temps"
+     usecase UC52 as "Modifier feuille de temps"
+     usecase UC53 as "Supprimer feuille de temps"
+}
+
+rectangle "Serveur Fedora 41" {
+    component HTTPD
+    component BIND
+    component DHCPD
+    component [Symfony App] as symfony
+    component MariaDB
+
+    HTTPD --> symfony
+    symfony --> MariaDB
+    DHCPD --> HTTPD
+    BIND --> HTTPD
+}
+
+
+' Liaisons acteur --> cas principaux
+RH --> UC1
+RH --> UC2
+RH --> UC3
+RH --> UC4
+RH --> UC5
+
+' Liaisons gestion --extend--> opérations CRUD
+UC1 ...> UC11 : "<<extend>>"
+UC1 ...> UC12 : "<<extend>>"
+UC1 ...> UC13 : "<<extend>>"
+
+UC2 ...> UC21 : "<<extend>>"
+UC2 ...> UC22 : "<<extend>>"
+UC2 ...> UC23 : "<<extend>>"
+
+UC3 ...> UC31 : "<<extend>>"
+UC3 ...> UC32 : "<<extend>>"
+UC3 ...> UC33 : "<<extend>>"
+
+UC4 ...> UC41 : "<<extend>>"
+UC4 ...> UC42 : "<<extend>>"
+UC4 ...> UC43 : "<<extend>>"
+
+UC5 ...> UC51 : "<<extend>>"
+UC5 ...> UC52 : "<<extend>>"
+UC5 ...> UC53 : "<<extend>>"
+
+
+' Liaisons acteur --> serveur HTTPD
+RH --> HTTPD
+
+' Use cases utilisent HTTPD
+UC1 ..> HTTPD : utilise
+UC2 ..> HTTPD : utilise
+UC3 ..> HTTPD : utilise
+UC4 ..> HTTPD : utilise
+UC5 ..> HTTPD : utilise
+
+@enduml
